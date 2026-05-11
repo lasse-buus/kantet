@@ -6,7 +6,7 @@ const PASSWORD = process.env.SITE_PASSWORD
 export function proxy(request: NextRequest) {
   // Skip the studio and the auth endpoint itself
   const { pathname } = request.nextUrl
-  if (pathname.startsWith('/studio') || pathname === '/api/auth') {
+  if (pathname.startsWith('/studio') || pathname.startsWith('/gate')) {
     return NextResponse.next()
   }
 
