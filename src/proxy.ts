@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 
 const PASSWORD = process.env.SITE_PASSWORD
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Skip the studio and the auth endpoint itself
   const { pathname } = request.nextUrl
   if (pathname.startsWith('/studio') || pathname === '/api/auth') {
