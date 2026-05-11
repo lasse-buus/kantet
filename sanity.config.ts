@@ -9,7 +9,7 @@ export default defineConfig({
   basePath: '/studio',
   name: 'kantet',
   title: 'Kantet Studio',
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? 'nrloy6a0',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
   plugins: [structureTool(), visionTool()],
   schema: { types: schemaTypes },
