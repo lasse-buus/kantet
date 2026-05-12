@@ -7,6 +7,7 @@ interface Service {
 	_id: string
 	title: string
 	description: string
+	icon?: { asset?: { url: string } }
 }
 
 interface Homepage {
@@ -66,6 +67,9 @@ export default async function HomePage() {
 					<ul className="grid sm:grid-cols-2 lg:grid-cols-3 divide-x divide-neutral-200 dark:divide-neutral-800">
 						{services.map((s) => (
 							<li key={s._id} className="p-8">
+								{s.icon?.asset?.url && (
+									<Image src={s.icon.asset.url} alt="" width={32} height={32} className="mb-4 invert-100 dark:invert-0" aria-hidden />
+								)}
 								<h3 className="font-semibold text-lg mb-3">{s.title}</h3>
 								<p className="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed">{s.description}</p>
 							</li>

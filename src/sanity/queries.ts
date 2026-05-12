@@ -26,5 +26,6 @@ export const caseBySlugQuery = groq`
 export const servicesQuery = groq`
   *[_type == "service"] | order(order asc) {
     _id, title, description,
+    icon { asset->{ url } },
   }
 `

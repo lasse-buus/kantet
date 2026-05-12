@@ -6,6 +6,7 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({ name: 'title', title: 'Title', type: 'string', validation: (r) => r.required() }),
+    defineField({ name: 'icon', title: 'Icon', type: 'image', options: { hotspot: false } }),
     defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
     defineField({ name: 'order', title: 'Order', type: 'number' }),
   ],
