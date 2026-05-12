@@ -19,8 +19,8 @@ export default function Nav() {
     <header className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${scrolled ? 'bg-stone-50 dark:bg-neutral-950/80 backdrop-blur-md' : ''}`}>
       <nav className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight text-xl text-neutral-950 dark:text-white">
-          <Image src="/kantet-logo-black.svg" alt="" width={32} height={32} className="dark:hidden" aria-hidden />
-          <Image src="/kantet-logo-white.svg" alt="" width={32} height={32} className="hidden dark:block" aria-hidden />
+          <Image src="/kantet-logo-black-corner.svg" alt="" width={32} height={32} className="dark:hidden" aria-hidden />
+          <Image src="/kantet-logo-white-corner.svg" alt="" width={32} height={32} className="hidden dark:block" aria-hidden />
           kantet
         </Link>
         <ul className="flex items-center gap-6 text-sm text-neutral-950 dark:text-white">
