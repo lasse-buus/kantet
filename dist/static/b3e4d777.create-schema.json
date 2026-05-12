@@ -2,6 +2,35 @@
   {
     "fields": [
       {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "heroImage",
+        "type": "image"
+      },
+      {
+        "name": "heroTitle",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "name": "heroDescription",
+        "type": "text"
+      }
+    ],
+    "name": "homepage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
         "validation": [
           {
             "level": "error",
@@ -248,6 +277,13 @@
         ],
         "name": "title",
         "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": false
+        },
+        "name": "icon",
+        "type": "image"
       },
       {
         "rows": 4,
