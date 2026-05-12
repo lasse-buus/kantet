@@ -1,5 +1,13 @@
 import { groq } from 'next-sanity'
 
+export const homepageQuery = groq`
+  *[_type == "homepage" && _id == "homepage"][0] {
+    heroImage { asset->{ url }, alt },
+    heroTitle,
+    heroDescription,
+  }
+`
+
 export const casesQuery = groq`
   *[_type == "case"] | order(_createdAt desc) {
     _id, title, slug, client, year, tags, excerpt,

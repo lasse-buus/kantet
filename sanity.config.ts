@@ -11,6 +11,27 @@ export default defineConfig({
   title: 'Kantet Studio',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? 'nrloy6a0',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Content')
+          .items([
+            S.listItem()
+              .title('Homepage')
+              .id('homepage')
+              .child(
+                S.document()
+                  .schemaType('homepage')
+                  .documentId('homepage')
+              ),
+            S.divider(),
+            ...S.documentTypeListItems().filter(
+              (item) => !['homepage'].includes(item.getId() ?? '')
+            ),
+          ]),
+    }),
+    visionTool(),
+  ],
   schema: { types: schemaTypes },
 })
