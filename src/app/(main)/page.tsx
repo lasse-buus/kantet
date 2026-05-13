@@ -32,8 +32,8 @@ export default async function HomePage() {
 	return (
 		<main>
 			{/* Hero */}
-			<section className="min-h-svh flex flex-col px-6 pt-6 pb-16 mt-20 max-w-7xl mx-auto gap-12">
-				<div className="h-140 relative rounded-tl-[5rem] rounded-br-[5rem] overflow-hidden bg-neutral-100 dark:bg-neutral-900">
+			<section className="min-h-svh flex flex-col px-6 pt-6 pb-16 mt-30 max-w-7xl mx-auto gap-12">
+				<div className="h-100 md:h-140 relative rounded-tl-4xl rounded-br-4xl overflow-hidden bg-neutral-100 dark:bg-neutral-900">
 					<Image
 						src={heroSrc}
 						alt={heroAlt}
@@ -63,10 +63,10 @@ export default async function HomePage() {
 			{/* Services */}
 			{services.length > 0 && (
 				<section className="px-6 py-24 max-w-7xl mx-auto border-t border-neutral-200 dark:border-neutral-800">
-					<h2 className="text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-16">Services</h2>
+					<h2 className="pl-8 text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-16">Services</h2>
 					<ul className="grid sm:grid-cols-2 lg:grid-cols-3 divide-x divide-neutral-200 dark:divide-neutral-800">
 						{services.map((s) => (
-							<li key={s._id} className="p-8">
+							<li key={s._id} className="p-8 border-0 xl:not-first:border-l border-neutral-200 dark:border-neutral-800">
 								{s.icon?.asset?.url && (
 									<Image src={s.icon.asset.url} alt="" width={32} height={32} className="mb-4 invert-100 dark:invert-0" aria-hidden />
 								)}
