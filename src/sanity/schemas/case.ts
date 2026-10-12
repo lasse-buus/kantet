@@ -10,18 +10,38 @@ export default defineType({
     defineField({ name: 'client', title: 'Client', type: 'string' }),
     defineField({ name: 'year', title: 'Year', type: 'number' }),
     defineField({ name: 'tags', title: 'Tags', type: 'array', of: [{ type: 'string' }], options: { list: ['Web Design', 'Development', 'Branding', 'UX/UI', 'E-commerce'] } }),
-    defineField({ name: 'excerpt', title: 'Excerpt', type: 'text', rows: 3 }),
-    defineField({ name: 'coverImage', title: 'Cover Image', type: 'image', options: { hotspot: true } }),
+    defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      rows: 3,
+      description: 'Short summary used in the case list and as meta description (max 200 characters).',
+      validation: (r) => r.max(200),
+    }),
+    defineField({
+      name: 'coverImage',
+      title: 'Cover Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [defineField({ name: 'alt', title: 'Alt text', type: 'string' })],
+    }),
     defineField({
       name: 'body',
       title: 'Body',
       type: 'array',
       of: [
         { type: 'block' },
-        { type: 'image', options: { hotspot: true } },
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [defineField({ name: 'alt', title: 'Alt text', type: 'string' })],
+        },
       ],
     }),
     defineField({ name: 'url', title: 'Live URL', type: 'url' }),
+  ],
+  orderings: [
+    { title: 'Year, newest', name: 'yearDesc', by: [{ field: 'year', direction: 'desc' }] },
   ],
   preview: {
     select: { title: 'title', subtitle: 'client', media: 'coverImage' },

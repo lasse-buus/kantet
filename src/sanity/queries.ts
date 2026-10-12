@@ -9,7 +9,7 @@ export const homepageQuery = groq`
 `
 
 export const casesQuery = groq`
-  *[_type == "case"] | order(_createdAt desc) {
+  *[_type == "case"] | order(year desc, _createdAt desc) {
     _id, title, slug, client, year, tags, excerpt,
     coverImage { asset->{ url }, alt },
   }

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { client } from '@/sanity/client'
 import { caseBySlugQuery, casesQuery } from '@/sanity/queries'
-import { PortableText } from '@portabletext/react'
+import { PortableText, type PortableTextComponents } from '@portabletext/react'
 
 export const revalidate = 60
 
@@ -12,10 +12,31 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
+const components: PortableTextComponents = {
+  types: {
+    image: ({ value }) =>
+      value?.asset?.url ? (
+        <figure className="my-10">
+          <Image
+            src={value.asset.url}
+            alt={value.alt ?? ''}
+            width={value.asset.metadata?.dimensions?.width ?? 1600}
+            height={value.asset.metadata?.dimensions?.height ?? 900}
+            className="w-full h-auto rounded"
+          />
+        </figure>
+      ) : null,
+  },
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const data = await client.fetch(caseBySlugQuery, { slug }).catch(() => null)
-  return { title: data?.title ?? 'Case' }
+  return {
+    title: data?.title ?? 'Case',
+    description: data?.excerpt,
+    openGraph: data?.coverImage?.asset?.url ? { images: [data.coverImage.asset.url] } : undefined,
+  }
 }
 
 export async function generateStaticParams() {
@@ -64,7 +85,7 @@ export default async function CasePage({ params }: Props) {
 
         {data.body && (
           <div className="prose prose-invert prose-neutral max-w-none">
-            <PortableText value={data.body} />
+            <PortableText value={data.body} components={components} />
           </div>
         )}
       </div>
