@@ -25,6 +25,7 @@ export default function Nav() {
         </Link>
         <ul className="flex items-center gap-6 text-sm text-neutral-950 dark:text-white">
           <li><Link href="/cases" className="hover:opacity-60 transition-opacity">Work</Link></li>
+          <li><Link href="/blog" className="hover:opacity-60 transition-opacity">Blog</Link></li>
           <li><Link href="/contact" className="hover:opacity-60 transition-opacity">Contact</Link></li>
           <li><ThemeToggle /></li>
         </ul>

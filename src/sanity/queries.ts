@@ -29,3 +29,18 @@ export const servicesQuery = groq`
     icon { asset->{ url } },
   }
 `
+
+export const postsQuery = groq`
+  *[_type == "post" && defined(slug.current) && publishedAt <= now()] | order(publishedAt desc) {
+    _id, title, slug, publishedAt, excerpt, tags,
+    coverImage { asset->{ url }, alt },
+  }
+`
+
+export const postBySlugQuery = groq`
+  *[_type == "post" && slug.current == $slug && publishedAt <= now()][0] {
+    _id, title, slug, publishedAt, excerpt, tags,
+    coverImage { asset->{ url }, alt },
+    body[] { ..., asset-> },
+  }
+`
