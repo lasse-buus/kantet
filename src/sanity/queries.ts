@@ -23,6 +23,13 @@ export const caseBySlugQuery = groq`
   }
 `
 
+export const moreCasesQuery = groq`
+  *[_type == "case" && slug.current != $slug] | order(year desc, _createdAt desc)[0...3] {
+    _id, title, slug, client, year, tags,
+    coverImage { asset->{ url }, alt },
+  }
+`
+
 export const servicesQuery = groq`
   *[_type == "service"] | order(order asc) {
     _id, title, description,
@@ -42,5 +49,12 @@ export const postBySlugQuery = groq`
     _id, title, slug, publishedAt, excerpt, tags,
     coverImage { asset->{ url }, alt },
     body[] { ..., asset-> },
+  }
+`
+
+export const morePostsQuery = groq`
+  *[_type == "post" && defined(slug.current) && slug.current != $slug && publishedAt <= now()] | order(publishedAt desc)[0...3] {
+    _id, title, slug, publishedAt, tags,
+    coverImage { asset->{ url }, alt },
   }
 `

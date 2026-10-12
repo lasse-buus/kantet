@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
+import ProjectCard from '@/components/ProjectCard'
 import { client } from '@/sanity/client'
 import { casesQuery } from '@/sanity/queries'
 
@@ -20,47 +19,36 @@ interface CaseItem {
 
 export default async function CasesPage() {
   const cases: CaseItem[] = await client.fetch(casesQuery).catch(() => [])
+  const [first, ...rest] = cases
 
   return (
-    <main className="pt-24 px-6 max-w-7xl mx-auto pb-24">
-      <header className="mb-16">
-        <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight">Work</h1>
-      </header>
+    <main className="px-4 sm:px-6 pt-20 sm:pt-24">
+      <ul className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <li className="rounded-[8px] bg-surface p-4 sm:p-5 flex flex-col justify-between gap-16 min-h-[22rem]">
+          <p className="eyebrow text-[10px] text-brand-fg">Selected work</p>
+          <header>
+            <h1 className="display text-2xl sm:text-[28px] font-medium mb-4">Websites and products, built with care</h1>
+            <p className="text-sm leading-relaxed max-w-md">
+              A selection of projects — from small sites to larger products. Each one built in close collaboration, with an eye for the details that make it feel right.
+            </p>
+          </header>
+        </li>
 
-      {cases.length === 0 ? (
-        <p className="text-neutral-500">No cases yet — check back soon.</p>
-      ) : (
-        <ul className="grid gap-px bg-neutral-200 dark:bg-neutral-800">
-          {cases.map((c) => (
-            <li key={c._id} className="bg-white dark:bg-neutral-950">
-              <Link href={`/cases/${c.slug.current}`} className="group flex flex-col sm:flex-row gap-8 p-8 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                {c.coverImage?.asset?.url && (
-                  <div className="relative w-full sm:w-64 aspect-video shrink-0 overflow-hidden rounded bg-neutral-100 dark:bg-neutral-800">
-                    <Image
-                      src={c.coverImage.asset.url}
-                      alt={c.coverImage.alt ?? c.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                )}
-                <div className="flex flex-col justify-center">
-                  {c.tags && (
-                    <ul className="flex flex-wrap gap-2 mb-3">
-                      {c.tags.map((t) => (
-                        <li key={t} className="text-xs text-neutral-500 border border-neutral-200 dark:border-neutral-800 px-2 py-0.5 rounded-full">{t}</li>
-                      ))}
-                    </ul>
-                  )}
-                  <h2 className="text-xl font-semibold mb-1">{c.title}</h2>
-                  {c.client && <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">{c.client} {c.year ? `· ${c.year}` : ''}</p>}
-                  {c.excerpt && <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed line-clamp-2">{c.excerpt}</p>}
-                </div>
-              </Link>
+        {cases.length === 0 ? (
+          <li className="lg:col-span-2 rounded-[8px] bg-surface p-5 text-muted">No cases yet — check back soon.</li>
+        ) : (
+          <>
+            <li className="lg:col-span-2">
+              <ProjectCard href={`/cases/${first.slug.current}`} title={first.title} meta={first.tags?.join(' / ')} badge="Featured" image={first.coverImage} className="aspect-[9/7] lg:aspect-auto lg:h-full lg:min-h-[22rem]" sizes="(max-width: 1024px) 100vw, 66vw" />
             </li>
-          ))}
-        </ul>
-      )}
+            {rest.map((c) => (
+              <li key={c._id}>
+                <ProjectCard href={`/cases/${c.slug.current}`} title={c.title} meta={c.tags?.join(' / ')} image={c.coverImage} />
+              </li>
+            ))}
+          </>
+        )}
+      </ul>
     </main>
   )
 }
