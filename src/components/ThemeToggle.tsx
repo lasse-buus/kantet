@@ -9,7 +9,7 @@ export default function ThemeToggle() {
 
   useEffect(() => setMounted(true), [])
 
-  if (!mounted) return <div className="w-8 h-8" />
+  if (!mounted) return <div className="w-9 h-9" />
 
   const isDark = resolvedTheme === 'dark'
 
@@ -17,7 +17,7 @@ export default function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="w-8 h-8 flex items-center justify-center rounded-[7px] hover:bg-paper/60 transition-colors text-ink"
+      className="w-9 h-9 flex items-center justify-center border border-line hover:border-ink transition-colors text-ink"
     >
       {isDark ? (
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

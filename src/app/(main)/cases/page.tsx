@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import PageHeader from '@/components/PageHeader'
 import ProjectCard from '@/components/ProjectCard'
+import Section from '@/components/Section'
 import { client } from '@/sanity/client'
 import { casesQuery } from '@/sanity/queries'
 
@@ -22,33 +24,38 @@ export default async function CasesPage() {
   const [first, ...rest] = cases
 
   return (
-    <main className="px-4 sm:px-6 pt-20 sm:pt-24">
-      <ul className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <li className="rounded-[8px] bg-surface p-4 sm:p-5 flex flex-col justify-between gap-16 min-h-[22rem]">
-          <p className="eyebrow text-[10px] text-brand-fg">Selected work</p>
-          <header>
-            <h1 className="display text-2xl sm:text-[28px] font-medium mb-4">Websites and products, built with care</h1>
-            <p className="text-sm leading-relaxed max-w-md">
-              A selection of projects — from small sites to larger products. Each one built in close collaboration, with an eye for the details that make it feel right.
-            </p>
-          </header>
-        </li>
+    <main>
+      <PageHeader
+        label="Selected work"
+        meta={cases.length ? `${String(cases.length).padStart(2, '0')} ${cases.length === 1 ? 'project' : 'projects'}` : undefined}
+        title="Websites and products, built with care"
+        description="A selection of projects — from small sites to larger products. Each one built in close collaboration, with an eye for the details that make it feel right."
+      />
 
+      <Section label="All work">
         {cases.length === 0 ? (
-          <li className="lg:col-span-2 rounded-[8px] bg-surface p-5 text-muted">No cases yet — check back soon.</li>
+          <p className="px-4 sm:px-6 py-10 text-muted">No cases yet — check back soon.</p>
         ) : (
-          <>
-            <li className="lg:col-span-2">
-              <ProjectCard href={`/cases/${first.slug.current}`} title={first.title} meta={first.tags?.join(' / ')} badge="Featured" image={first.coverImage} className="aspect-[9/7] lg:aspect-auto lg:h-full lg:min-h-[22rem]" sizes="(max-width: 1024px) 100vw, 66vw" />
+          <ul className="cell-grid sm:grid-cols-2 lg:grid-cols-3">
+            <li className="p-4 sm:p-6 sm:col-span-2">
+              <ProjectCard
+                href={`/cases/${first.slug.current}`}
+                title={first.title}
+                meta={first.tags?.join(' / ')}
+                badge="Featured"
+                image={first.coverImage}
+                className="aspect-[9/7] sm:aspect-[16/9]"
+                sizes="(max-width: 640px) 100vw, 66vw"
+              />
             </li>
             {rest.map((c) => (
-              <li key={c._id}>
+              <li key={c._id} className="p-4 sm:p-6">
                 <ProjectCard href={`/cases/${c.slug.current}`} title={c.title} meta={c.tags?.join(' / ')} image={c.coverImage} />
               </li>
             ))}
-          </>
+          </ul>
         )}
-      </ul>
+      </Section>
     </main>
   )
 }

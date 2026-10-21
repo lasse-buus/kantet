@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import PageHeader from '@/components/PageHeader'
 import ProjectCard from '@/components/ProjectCard'
+import Section from '@/components/Section'
 import { client } from '@/sanity/client'
 import { postsQuery } from '@/sanity/queries'
 
@@ -26,32 +28,38 @@ export default async function BlogPage() {
   const [first, ...rest] = posts
 
   return (
-    <main className="px-4 sm:px-6 pt-20 sm:pt-24">
-      <div className="grid gap-4 sm:gap-5 lg:grid-cols-3">
-        <header className="border-y border-line py-5 flex flex-col justify-between gap-16 min-h-[18rem]">
-          <h1 className="display text-2xl sm:text-[28px] font-medium max-w-sm">Notes, stories and thoughts from the studio</h1>
-          <p className="text-sm leading-relaxed max-w-sm">
-            Thoughts on design, development and running a small studio — plus the occasional story about how I got here.
-          </p>
-        </header>
+    <main>
+      <PageHeader
+        label="Blog"
+        meta={posts.length ? `${String(posts.length).padStart(2, '0')} ${posts.length === 1 ? 'post' : 'posts'}` : undefined}
+        title="Notes, stories and thoughts from the studio"
+        description="Thoughts on design, development and running a small studio — plus the occasional story about how I got here."
+      />
 
+      <Section label="All posts">
         {posts.length === 0 ? (
-          <p className="lg:col-span-2 text-muted">No posts yet — check back soon.</p>
+          <p className="px-4 sm:px-6 py-10 text-muted">No posts yet — check back soon.</p>
         ) : (
-          <>
-            <div className="lg:col-span-2">
-              <ProjectCard href={`/blog/${first.slug.current}`} title={first.title} meta={postMeta(first)} badge="Latest" image={first.coverImage} className="aspect-[9/7] lg:aspect-auto lg:h-full lg:min-h-[18rem]" sizes="(max-width: 1024px) 100vw, 66vw" />
-            </div>
-            <ul className="lg:col-span-3 grid gap-x-4 sm:gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 pt-4">
-              {rest.map((p) => (
-                <li key={p._id}>
-                  <ProjectCard href={`/blog/${p.slug.current}`} title={p.title} meta={postMeta(p)} image={p.coverImage} variant="stacked" className="aspect-[3/2]" />
-                </li>
-              ))}
-            </ul>
-          </>
+          <ul className="cell-grid sm:grid-cols-2 lg:grid-cols-3">
+            <li className="p-4 sm:p-6 sm:col-span-2">
+              <ProjectCard
+                href={`/blog/${first.slug.current}`}
+                title={first.title}
+                meta={postMeta(first)}
+                badge="Latest"
+                image={first.coverImage}
+                className="aspect-[9/7] sm:aspect-[16/9]"
+                sizes="(max-width: 640px) 100vw, 66vw"
+              />
+            </li>
+            {rest.map((p) => (
+              <li key={p._id} className="p-4 sm:p-6">
+                <ProjectCard href={`/blog/${p.slug.current}`} title={p.title} meta={postMeta(p)} image={p.coverImage} variant="stacked" className="aspect-[3/2]" />
+              </li>
+            ))}
+          </ul>
         )}
-      </div>
+      </Section>
     </main>
   )
 }

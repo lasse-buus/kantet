@@ -7,48 +7,47 @@ interface Props {
   meta?: string
   badge?: string
   image?: { asset?: { url: string }; alt?: string }
-  /** 'overlay' puts the text on the image (work); 'stacked' puts it below (articles) */
+  /** Kept for compatibility — text always sits below the image now */
   variant?: 'overlay' | 'stacked'
   className?: string
   sizes?: string
 }
 
-export default function ProjectCard({ href, title, meta, badge, image, variant = 'overlay', className = 'aspect-[9/7]', sizes = '(max-width: 640px) 100vw, 33vw' }: Props) {
-  const media = (
-    <div className={`relative overflow-hidden rounded-[8px] bg-surface ${className}`}>
-      {image?.asset?.url && (
-        <Image
-          src={image.asset.url}
-          alt={image.alt ?? title}
-          fill
-          sizes={sizes}
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-        />
-      )}
-      {badge && (
-        <span className="absolute top-3 left-3 eyebrow text-[10px] text-white bg-black/40 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1.5">
-          <span aria-hidden className="size-1.5 rounded-full bg-accent" />
-          {badge}
-        </span>
-      )}
-      {variant === 'overlay' && (
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent px-3 pb-3 pt-16 text-white">
-          {meta && <p className="eyebrow text-[10px] opacity-85 mb-1">{meta}</p>}
-          <h3 className="text-[15px] leading-tight">{title}</h3>
-        </div>
-      )}
-    </div>
-  )
-
+export default function ProjectCard({ href, title, meta, badge, image, className = 'aspect-[4/3]', sizes = '(max-width: 640px) 100vw, 33vw' }: Props) {
   return (
     <Link href={href} className="group block h-full">
-      {media}
-      {variant === 'stacked' && (
-        <div className="pt-3">
-          {meta && <p className="text-xs text-muted mb-1">{meta}</p>}
-          <h3 className="text-[15px] leading-snug">{title}</h3>
+      <div className="relative">
+        <div className={`relative overflow-hidden bg-surface ${className}`}>
+          {image?.asset?.url && (
+            <Image
+              src={image.asset.url}
+              alt={image.alt ?? title}
+              fill
+              sizes={sizes}
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            />
+          )}
+          {badge && (
+            <span className="absolute top-0 left-0 bg-accent text-accent-ink text-xs font-medium px-2.5 py-1.5">{badge}</span>
+          )}
         </div>
-      )}
+        {/* Crop marks appear on hover */}
+        <span aria-hidden className="crop absolute inset-0 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity" />
+      </div>
+      <div className="flex items-start justify-between gap-6 pt-4">
+        <div>
+          <h3 className="text-lg font-medium leading-snug tracking-[-0.01em]">{title}</h3>
+          {meta && <p className="text-sm text-muted mt-1">{meta}</p>}
+        </div>
+        <span
+          aria-hidden
+          className="flex-none grid place-items-center size-8 border border-line text-ink transition-colors group-hover:bg-accent group-hover:border-accent group-hover:text-accent-ink"
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="square">
+            <path d="M4 12L12 4M6 4h6v6" />
+          </svg>
+        </span>
+      </div>
     </Link>
   )
 }
