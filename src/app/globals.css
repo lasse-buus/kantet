@@ -4,33 +4,37 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --paper: #fafaf9;
-  --surface: #eef0f2;
-  --ink: #191919;
-  --muted: #787c80;
-  --subtle: #a5abb0;
-  --line: #dde0e5;
-  --accent: #cfe3dc;
-  --accent-ink: #133e34;
-  --brand: #133e34;
-  --brand-fg: #133e34;
+  /* Blueprint studio: cool paper, ink, one cobalt accent */
+  --paper: #f5f6f3;
+  --surface: #e8eae6;
+  --ink: #14161b;
+  --muted: #5e636d;
+  --subtle: #9aa0aa;
+  --line: #d9dceb;
+  --accent: #2b3ff0;
+  --accent-ink: #ffffff;
+  --accent-soft: #e2e5fd;
+  --brand: #2b3ff0;
+  --brand-fg: #2b3ff0;
 }
 
 .dark {
-  --paper: #0c0c0c;
-  --surface: #191919;
-  --ink: #fafaf9;
-  --muted: #a5abb0;
-  --subtle: #787c80;
-  --line: #2a2b2d;
-  --accent: #cfe3dc;
-  --accent-ink: #133e34;
-  --brand: #133e34;
-  --brand-fg: #cfe3dc;
+  /* Dark mode is an actual blueprint */
+  --paper: #0b0f24;
+  --surface: #141a3a;
+  --ink: #eef0fa;
+  --muted: #a3a9c7;
+  --subtle: #6e7499;
+  --line: #222a56;
+  --accent: #7484ff;
+  --accent-ink: #0b0f24;
+  --accent-soft: #1c2357;
+  --brand: #2b3ff0;
+  --brand-fg: #7484ff;
 }
 
 @theme inline {
-  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-dm-mono), ui-monospace, monospace;
 
   --color-paper: var(--paper);
@@ -39,8 +43,10 @@
   --color-muted: var(--muted);
   --color-subtle: var(--subtle);
   --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
   --color-brand: var(--brand);
   --color-brand-fg: var(--brand-fg);
 }
@@ -96,9 +102,9 @@
 }
 
 .prose :where(h2, h3) {
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
 }
 
 .prose :where(a) {
@@ -108,4 +114,132 @@
 
 .prose :where(a):hover {
   text-decoration-color: var(--ink);
+}
+
+/* ------------------------------------------------------------------
+   Grid system
+   ------------------------------------------------------------------ */
+:root {
+  --grid-cell: 64px;
+  --line-strong: #b9bfdf;
+}
+.dark {
+  --line-strong: #34407a;
+}
+
+/* The 1280px column with continuous rails left and right */
+@utility frame {
+  position: relative;
+  max-width: 80rem;
+  margin-inline: auto;
+  border-inline: 1px solid var(--line);
+}
+
+/* Full-bleed horizontal rule under a section */
+@utility rule {
+  border-bottom: 1px solid var(--line);
+}
+
+/* "+" crosshairs where a rule meets the rails (only when there is room beside the frame) */
+@utility cross {
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    z-index: 2;
+    width: 11px;
+    height: 11px;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--subtle), var(--subtle)) center / 1px 100% no-repeat,
+      linear-gradient(var(--subtle), var(--subtle)) center / 100% 1px no-repeat;
+  }
+  &::before { left: -6px; }
+  &::after { right: -6px; }
+  @media (width < 1328px) {
+    &::before,
+    &::after { display: none; }
+  }
+}
+
+/* Blueprint background grid, fading out towards the edges */
+@utility blueprint {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: var(--grid-cell) var(--grid-cell);
+  background-position: center top;
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 45%, #000 35%, transparent 100%);
+}
+
+/* Grid of cells separated by 1px lines; incomplete rows stay clean */
+@utility cell-grid {
+  display: grid;
+  gap: 1px;
+  overflow: hidden;
+  & > * {
+    background: var(--paper);
+    box-shadow: 1px 0 0 0 var(--line), 0 1px 0 0 var(--line), 1px 1px 0 0 var(--line);
+  }
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+/* Crop marks at the four corners of an element (the "kant" detail) */
+@utility crop {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -9px;
+    pointer-events: none;
+    --c: var(--brand-fg);
+    --l: 14px;
+    background:
+      linear-gradient(var(--c), var(--c)) left top / var(--l) 1px no-repeat,
+      linear-gradient(var(--c), var(--c)) left top / 1px var(--l) no-repeat,
+      linear-gradient(var(--c), var(--c)) right top / var(--l) 1px no-repeat,
+      linear-gradient(var(--c), var(--c)) right top / 1px var(--l) no-repeat,
+      linear-gradient(var(--c), var(--c)) left bottom / var(--l) 1px no-repeat,
+      linear-gradient(var(--c), var(--c)) left bottom / 1px var(--l) no-repeat,
+      linear-gradient(var(--c), var(--c)) right bottom / var(--l) 1px no-repeat,
+      linear-gradient(var(--c), var(--c)) right bottom / 1px var(--l) no-repeat;
+  }
+}
+
+/* Cyanotype: a photo printed in the accent colour */
+@utility cyanotype {
+  position: relative;
+  isolation: isolate;
+  & img {
+    filter: grayscale(1) contrast(1.08) brightness(1.04);
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--brand);
+    mix-blend-mode: color;
+    pointer-events: none;
+  }
+}
+
+/* Sticky bar background */
+@utility glass {
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: saturate(160%) blur(12px);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-fg);
+  outline-offset: 2px;
+}
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }

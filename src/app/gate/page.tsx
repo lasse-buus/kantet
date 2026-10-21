@@ -42,7 +42,7 @@ export default async function GatePage({ searchParams }: Props) {
           )}
           <button
             type="submit"
-            className="bg-ink text-paper px-6 py-3 rounded-[4px] text-sm hover:opacity-85 transition-opacity"
+            className="bg-accent text-accent-ink px-6 py-3 text-sm font-medium hover:bg-ink hover:text-paper transition-colors"
           >
             Enter
           </button>

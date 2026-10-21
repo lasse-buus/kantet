@@ -1,7 +1,8 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import { PortableText, type PortableTextBlock } from '@portabletext/react'
+import PageHeader from './PageHeader'
 import ProjectCard from './ProjectCard'
+import Section from './Section'
 import { portableTextComponents } from './portableText'
 
 type SanityImage = { asset?: { url: string }; alt?: string }
@@ -31,26 +32,31 @@ interface Props {
 }
 
 export default function DetailLayout({ back, eyebrow, title, excerpt, coverImage, meta, body, more }: Props) {
+  const label = back.href === '/cases' ? 'Case' : 'Article'
+
   return (
-    <main className="px-4 sm:px-6 pt-28 sm:pt-32">
-      <article className="mx-auto max-w-7xl">
-        <header className="text-center flex flex-col items-center">
-          <Link href={back.href} className="eyebrow text-[10px] text-muted hover:text-ink transition-colors mb-5">← {back.label}</Link>
-          <h1 className="display text-3xl sm:text-5xl font-medium max-w-3xl">{title}</h1>
-          {eyebrow && <p className="eyebrow text-[10px] text-muted mt-5">{eyebrow}</p>}
-        </header>
+    <main>
+      <PageHeader label={label} meta={eyebrow} title={title} back={back} />
 
-        {coverImage?.asset?.url && (
-          <div className="relative mt-12 sm:mt-16 aspect-[4/3] sm:aspect-[16/9] overflow-hidden rounded-[8px] bg-surface">
-            <Image src={coverImage.asset.url} alt={coverImage.alt ?? title} fill sizes="(max-width: 1280px) 100vw, 1280px" className="object-cover" priority />
+      {coverImage?.asset?.url && (
+        <section className="rule">
+          <div className="frame p-4 sm:p-10">
+            <div className="crop">
+            <div className="relative aspect-[4/3] sm:aspect-[16/9] overflow-hidden bg-surface">
+              <Image src={coverImage.asset.url} alt={coverImage.alt ?? title} fill sizes="(max-width: 1280px) 100vw, 1280px" className="object-cover" loading="eager" fetchPriority="high" />
+            </div>
+            </div>
           </div>
-        )}
+        </section>
+      )}
 
-        <div className="mt-12 sm:mt-16 grid gap-12 lg:grid-cols-12 border-t border-line pt-8">
-          <aside className="lg:col-span-4 lg:sticky lg:top-28 self-start">
-            <dl className="grid grid-cols-2 lg:grid-cols-1 gap-6">
+      <section className="rule">
+        <div className="frame grid lg:grid-cols-12">
+          {/* Facts, as rows of cells */}
+          <aside className="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-line">
+            <dl className="lg:sticky lg:top-24 grid grid-cols-2 lg:grid-cols-1">
               {meta.map((m) => (
-                <div key={m.label}>
+                <div key={m.label} className="px-4 sm:px-6 py-5 border-b border-line odd:border-r lg:odd:border-r-0">
                   <dt className="eyebrow text-muted mb-1.5">{m.label}</dt>
                   <dd>{m.value}</dd>
                 </div>
@@ -58,12 +64,12 @@ export default function DetailLayout({ back, eyebrow, title, excerpt, coverImage
             </dl>
           </aside>
 
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 px-4 sm:px-6 lg:px-12 py-10 sm:py-14">
             {excerpt && (
-              <section className="mb-12">
-                <h2 className="eyebrow text-muted mb-4">Summary</h2>
-                <p className="display text-2xl sm:text-[28px] font-medium">{excerpt}</p>
-              </section>
+              <div className="mb-12">
+                <p className="eyebrow text-muted mb-4">Summary</p>
+                <p className="display text-2xl sm:text-[28px] font-semibold">{excerpt}</p>
+              </div>
             )}
             {body && (
               <div className="prose prose-lg max-w-2xl">
@@ -72,22 +78,18 @@ export default function DetailLayout({ back, eyebrow, title, excerpt, coverImage
             )}
           </div>
         </div>
-      </article>
+      </section>
 
       {more.items.length > 0 && (
-        <section className="mx-auto max-w-7xl pt-32">
-          <div className="flex items-center justify-between gap-6 border-t border-line pt-4 mb-4">
-            <h2 className="eyebrow text-[10px]">{more.title}</h2>
-            <Link href={more.href} className="pill">{more.linkLabel}</Link>
-          </div>
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Section label={more.title} action={{ href: more.href, label: more.linkLabel }}>
+          <ul className="cell-grid sm:grid-cols-2 lg:grid-cols-3">
             {more.items.map((item) => (
-              <li key={item._id}>
+              <li key={item._id} className="p-4 sm:p-6">
                 <ProjectCard href={item.href} title={item.title} meta={item.meta} image={item.image} variant={more.variant} />
               </li>
             ))}
           </ul>
-        </section>
+        </Section>
       )}
     </main>
   )

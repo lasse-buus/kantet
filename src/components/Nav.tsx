@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import ThemeToggle from './ThemeToggle'
@@ -15,13 +14,14 @@ export default function Nav() {
   const pathname = usePathname()
 
   return (
-    <header className="fixed top-3 sm:top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-      <nav className="pointer-events-auto flex items-center gap-1 sm:gap-2 rounded-[10px] bg-[#c8cbcf]/70 dark:bg-[#3a3b3d]/70 backdrop-blur-md p-1 pl-2.5 shadow-[0_1px_0_rgba(255,255,255,0.4)_inset]">
-        <Link href="/" className="flex items-center mr-2 sm:mr-4" aria-label="Kantet, home">
-          <Image src="/kantet-logo-square-black.svg" alt="" width={28} height={28} className="dark:hidden" aria-hidden />
-          <Image src="/kantet-logo-square-white.svg" alt="" width={28} height={28} className="hidden dark:block" aria-hidden />
+    <header className="sticky top-0 z-50 rule glass">
+      <nav className="frame flex items-center justify-between h-16 px-4 sm:px-6">
+        <Link href="/" className="flex items-end gap-1 text-[22px] font-semibold tracking-[-0.04em] leading-none" aria-label="Kantet, home">
+          Kantet
+          <span aria-hidden className="size-[7px] bg-accent mb-[3px]" />
         </Link>
-        <ul className="flex items-center text-[13px]">
+
+        <ul className="flex items-center gap-1 sm:gap-6 text-sm sm:absolute sm:left-1/2 sm:-translate-x-1/2">
           {links.map((l) => {
             const active = pathname === l.href || pathname.startsWith(`${l.href}/`)
             return (
@@ -29,15 +29,25 @@ export default function Nav() {
                 <Link
                   href={l.href}
                   aria-current={active ? 'page' : undefined}
-                  className={`block rounded-[7px] px-2.5 sm:px-3 py-1.5 transition-colors ${active ? 'bg-paper/80 text-ink' : 'text-ink/75 hover:text-ink'}`}
+                  className={`relative block px-2 py-1.5 transition-colors ${active ? 'text-ink' : 'text-muted hover:text-ink'}`}
                 >
                   {l.label}
+                  {active && <span aria-hidden className="absolute left-1/2 -translate-x-1/2 -bottom-[13px] size-[5px] bg-accent" />}
                 </Link>
               </li>
             )
           })}
         </ul>
-        <ThemeToggle />
+
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Link
+            href="/contact"
+            className="hidden sm:inline-flex items-center h-9 px-4 bg-ink text-paper text-sm hover:bg-accent hover:text-accent-ink transition-colors"
+          >
+            Start a project
+          </Link>
+        </div>
       </nav>
     </header>
   )

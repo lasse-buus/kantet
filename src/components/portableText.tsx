@@ -11,7 +11,7 @@ export const portableTextComponents: PortableTextComponents = {
             alt={value.alt ?? ''}
             width={value.asset.metadata?.dimensions?.width ?? 1600}
             height={value.asset.metadata?.dimensions?.height ?? 900}
-            className="w-full h-auto rounded-[8px]"
+            className="w-full h-auto "
           />
         </figure>
       ) : null,
