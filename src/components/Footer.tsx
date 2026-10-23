@@ -7,8 +7,6 @@ const links = [
   { href: '/contact', label: 'Contact' },
 ]
 
-const EMAIL = 'lassebuus91@gmail.com'
-
 export default function Footer() {
   return (
     <footer className="mt-auto">
@@ -61,9 +59,9 @@ export default function Footer() {
             </nav>
             <div className="px-4 sm:px-6 lg:px-10 py-8">
               <p className="text-sm text-white/60 mb-3">Get in touch</p>
-              <a href={`mailto:${EMAIL}`} className="underline decoration-white/40 underline-offset-4 hover:decoration-white transition-colors">
-                {EMAIL}
-              </a>
+              <Link href="/contact" className="underline decoration-white/40 underline-offset-4 hover:decoration-white transition-colors">
+                Contact
+              </Link>
             </div>
           </div>
 

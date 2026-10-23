@@ -229,6 +229,31 @@ body {
   }
 }
 
+/* Case gallery: horizontal scroll-snap track, one slide per view */
+.gallery-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  &:focus-visible { outline-offset: -2px; }
+  @media (prefers-reduced-motion: reduce) { scroll-behavior: auto; }
+}
+.gallery-slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
 /* Sticky bar background */
 @utility glass {
   background: color-mix(in srgb, var(--paper) 86%, transparent);

@@ -1,27 +1,28 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-
-const PASSWORD = process.env.SITE_PASSWORD
+import { AUTH_COOKIE, isAuthenticated, isLocked } from '@/lib/siteAuth'
 
 export function proxy(request: NextRequest) {
-  // Skip the studio and the auth endpoint itself
+  if (!isLocked()) return NextResponse.next()
+
+  // Skip the studio (behind Sanity login) and the gate itself
   const { pathname } = request.nextUrl
-  if (pathname.startsWith('/studio') || pathname.startsWith('/gate')) {
+  if (pathname.startsWith('/studio') || pathname === '/gate') {
     return NextResponse.next()
   }
 
-  // No password set → site is public
-  if (!PASSWORD) return NextResponse.next()
+  if (isAuthenticated(request.cookies.get(AUTH_COOKIE)?.value)) {
+    return NextResponse.next()
+  }
 
-  const cookie = request.cookies.get('site-auth')
-  if (cookie?.value === PASSWORD) return NextResponse.next()
-
-  // Show the gate for HTML requests; let assets through
-  const acceptsHtml = request.headers.get('accept')?.includes('text/html')
-  if (!acceptsHtml) return NextResponse.next()
+  // Everything else is gated, whatever the Accept header says
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
+    return new NextResponse('Unauthorized', { status: 401 })
+  }
 
   const url = request.nextUrl.clone()
   url.pathname = '/gate'
+  url.search = ''
   return NextResponse.rewrite(url)
 }
 

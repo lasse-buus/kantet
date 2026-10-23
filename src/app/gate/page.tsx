@@ -1,12 +1,19 @@
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { AUTH_COOKIE, authToken, checkPassword } from '@/lib/siteAuth'
+import { clientIp, rateLimit } from '@/lib/rateLimit'
 
 async function authenticate(formData: FormData) {
   'use server'
+  const ip = clientIp(await headers())
+  if (!rateLimit(`gate:${ip}`, 10, 15 * 60 * 1000)) {
+    redirect('/gate?error=limit')
+  }
+
   const password = formData.get('password')
-  if (password === process.env.SITE_PASSWORD) {
+  if (typeof password === 'string' && checkPassword(password)) {
     const cookieStore = await cookies()
-    cookieStore.set('site-auth', process.env.SITE_PASSWORD!, {
+    cookieStore.set(AUTH_COOKIE, authToken(), {
       httpOnly: true,
       sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 30,
@@ -38,7 +45,9 @@ export default async function GatePage({ searchParams }: Props) {
             className="bg-transparent border-b border-line py-3 text-lg outline-none placeholder:text-subtle focus:border-ink transition-colors"
           />
           {error && (
-            <p className="text-red-500 text-sm -mt-2">Incorrect password.</p>
+            <p className="text-red-500 text-sm -mt-2">
+              {error === 'limit' ? 'Too many attempts. Try again later.' : 'Incorrect password.'}
+            </p>
           )}
           <button
             type="submit"

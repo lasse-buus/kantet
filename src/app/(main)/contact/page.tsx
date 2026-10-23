@@ -4,7 +4,7 @@ import { useState } from 'react'
 import PageHeader from '@/components/PageHeader'
 import Section from '@/components/Section'
 
-type Status = 'idle' | 'loading' | 'success' | 'error'
+type Status = 'idle' | 'loading' | 'success' | 'error' | 'limited'
 
 const inputClass = "bg-transparent border-b border-line px-0 py-3 text-lg outline-none placeholder:text-subtle focus:border-ink transition-colors"
 
@@ -20,6 +20,7 @@ export default function ContactPage() {
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
       email: (form.elements.namedItem('email') as HTMLInputElement).value,
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+      company: (form.elements.namedItem('company') as HTMLInputElement).value,
     }
 
     const res = await fetch('/api/contact', {
@@ -28,7 +29,7 @@ export default function ContactPage() {
       body: JSON.stringify(data),
     })
 
-    setStatus(res.ok ? 'success' : 'error')
+    setStatus(res.ok ? 'success' : res.status === 429 ? 'limited' : 'error')
   }
 
   return (
@@ -42,12 +43,12 @@ export default function ContactPage() {
       <Section label="Get in touch">
         <div className="grid lg:grid-cols-12">
           <aside className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-line">
-            <div className="px-4 sm:px-6 py-6 border-b border-line">
+            {/* <div className="px-4 sm:px-6 py-6 border-b border-line">
               <p className="eyebrow text-muted mb-2">Prefer email?</p>
               <a href="mailto:lassebuus91@gmail.com" className="text-lg underline decoration-subtle underline-offset-4 hover:decoration-ink transition-colors">
                 lassebuus91@gmail.com
               </a>
-            </div>
+            </div> */}
             <div className="px-4 sm:px-6 py-6">
               <p className="eyebrow text-muted mb-2">Response time</p>
               <p className="text-lg">Within a day or two</p>
@@ -61,21 +62,30 @@ export default function ContactPage() {
               <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="name" className="eyebrow text-muted">Name</label>
-                  <input id="name" name="name" type="text" required className={inputClass} placeholder="Your name" />
+                  <input id="name" name="name" type="text" required maxLength={100} className={inputClass} placeholder="Your name" />
                 </div>
 
                 <div className="flex flex-col gap-2">
                   <label htmlFor="email" className="eyebrow text-muted">Email</label>
-                  <input id="email" name="email" type="email" required className={inputClass} placeholder="you@company.com" />
+                  <input id="email" name="email" type="email" required maxLength={200} className={inputClass} placeholder="you@company.com" />
                 </div>
 
                 <div className="flex flex-col gap-2">
                   <label htmlFor="message" className="eyebrow text-muted">Message</label>
-                  <textarea id="message" name="message" required rows={6} className={`${inputClass} resize-none`} placeholder="Tell me about your project…" />
+                  <textarea id="message" name="message" required maxLength={5000} rows={6} className={`${inputClass} resize-none`} placeholder="Tell me about your project…" />
+                </div>
+
+                {/* Honeypot for bots — hidden from people and screen readers */}
+                <div aria-hidden className="absolute -left-[9999px] size-px overflow-hidden">
+                  <label htmlFor="company">Company</label>
+                  <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
                 </div>
 
                 {status === 'error' && (
                   <p className="text-sm text-red-500">Something went wrong — please try again or email directly.</p>
+                )}
+                {status === 'limited' && (
+                  <p className="text-sm text-red-500">Too many messages in a short time — please try again in a few minutes.</p>
                 )}
 
                 <button

@@ -38,6 +38,20 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'gallery',
+      title: 'Gallery',
+      type: 'array',
+      description: 'Screenshots shown in a carousel below the case text. Click a photo to enlarge.',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [defineField({ name: 'alt', title: 'Alt text', type: 'string' })],
+        },
+      ],
+      options: { layout: 'grid' },
+    }),
     defineField({ name: 'url', title: 'Live URL', type: 'url' }),
   ],
   orderings: [

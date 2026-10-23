@@ -20,6 +20,7 @@ export const caseBySlugQuery = groq`
     _id, title, slug, client, year, tags, excerpt, url,
     coverImage { asset->{ url }, alt },
     body[] { ..., asset-> },
+    gallery[] { _key, alt, asset->{ url, metadata { dimensions } } },
   }
 `
 
