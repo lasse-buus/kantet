@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { PortableText, type PortableTextBlock } from '@portabletext/react'
+import Gallery, { type GalleryImage } from './Gallery'
 import PageHeader from './PageHeader'
 import ProjectCard from './ProjectCard'
 import Section from './Section'
@@ -28,10 +29,11 @@ interface Props {
   coverImage?: SanityImage
   meta: DetailMeta[]
   body?: PortableTextBlock[]
+  gallery?: GalleryImage[]
   more: { title: string; href: string; linkLabel: string; items: DetailMoreItem[]; variant?: 'overlay' | 'stacked' }
 }
 
-export default function DetailLayout({ back, eyebrow, title, excerpt, coverImage, meta, body, more }: Props) {
+export default function DetailLayout({ back, eyebrow, title, excerpt, coverImage, meta, body, gallery, more }: Props) {
   const label = back.href === '/cases' ? 'Case' : 'Article'
 
   return (
@@ -79,6 +81,12 @@ export default function DetailLayout({ back, eyebrow, title, excerpt, coverImage
           </div>
         </div>
       </section>
+
+      {gallery?.length ? (
+        <Section label="Gallery">
+          <Gallery images={gallery} title={title} />
+        </Section>
+      ) : null}
 
       {more.items.length > 0 && (
         <Section label={more.title} action={{ href: more.href, label: more.linkLabel }}>

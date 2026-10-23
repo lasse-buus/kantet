@@ -67,6 +67,7 @@ export default async function CasePage({ params }: Props) {
       coverImage={data.coverImage}
       meta={meta}
       body={data.body}
+      gallery={data.gallery}
       more={{
         title: 'More work',
         href: '/cases',

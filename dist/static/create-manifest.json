@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-05-12T10:01:29.463Z",
+  "createdAt": "2026-10-22T11:31:10.762Z",
   "studioVersion": "5.24.0",
   "version": 3,
   "workspaces": [
@@ -13,7 +13,7 @@
       },
       "name": "kantet",
       "projectId": "nrloy6a0",
-      "schema": "b3e4d777.create-schema.json",
+      "schema": "af0968f3.create-schema.json",
       "title": "Kantet Studio",
       "tools": "ef87c8fe.create-tools.json"
     }
