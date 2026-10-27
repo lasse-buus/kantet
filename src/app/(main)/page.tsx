@@ -128,14 +128,51 @@ export default async function HomePage() {
 					</div>
 				</div>
 			</section>
-
-			{/* Featured work: one wide row per case */}
+			
+			{/* Services */}
+			{services.length > 0 && (
+				<Section index={++n} total={sections} label="Services">
+					<ul className="cell-grid sm:grid-cols-3">
+						{services.map((s) => (
+							<li key={s._id} className="flex flex-col p-6 lg:p-8 min-h-[220px] lg:min-h-[260px]">
+								<span aria-hidden className="relative block size-8">
+									<span className="absolute left-0 top-0 h-px w-full bg-accent" />
+									<span className="absolute left-0 top-0 w-px h-full bg-accent" />
+								</span>
+								<h3 className="text-2xl font-semibold tracking-[-0.02em] mt-auto">{s.title}</h3>
+								<p className="text-muted leading-relaxed mt-3 max-w-[34ch]">{s.description}</p>
+							</li>
+						))}
+					</ul>
+				</Section>
+			)}
+			
+			{/* From the blog */}
+			{latest.length > 0 && (
+				<Section index={++n} total={sections} label="From the blog" action={{ href: '/blog', label: 'All posts' }}>
+					<ul className="cell-grid sm:grid-cols-2 lg:grid-cols-3">
+						{latest.map((p) => (
+							<li key={p._id} className="p-4 sm:p-6">
+								<ProjectCard
+									href={`/blog/${p.slug.current}`}
+									title={p.title}
+									meta={p.publishedAt ? formatDate(p.publishedAt) : undefined}
+									image={p.coverImage}
+									className="aspect-[3/2]"
+								/>
+							</li>
+						))}
+					</ul>
+				</Section>
+			)}
+		
+			{/* Featured work: one wide row per case, image side alternates */}
 			{featured.length > 0 && (
 				<Section index={++n} total={sections} label="Featured work" action={{ href: '/cases', label: 'All work' }}>
 					<ul>
 						{featured.map((c, i) => (
 							<li key={c._id} className="grid lg:grid-cols-12 border-b border-line last:border-b-0">
-								<Link href={`/cases/${c.slug.current}`} className="group lg:col-span-7 p-4 sm:p-6 lg:p-10 lg:border-r border-line">
+								<Link href={`/cases/${c.slug.current}`} className={`group lg:col-span-7 p-4 sm:p-6 lg:p-10 border-line ${i % 2 === 1 ? 'lg:order-last lg:border-l' : 'lg:border-r'}`}>
 									<div className="crop">
 										<div className="relative aspect-[16/10] overflow-hidden bg-surface">
 											{c.coverImage?.asset?.url && (
@@ -186,42 +223,6 @@ export default async function HomePage() {
 				</Section>
 			)}
 
-			{/* Services */}
-			{services.length > 0 && (
-				<Section index={++n} total={sections} label="Services">
-					<ul className="cell-grid sm:grid-cols-3">
-						{services.map((s) => (
-							<li key={s._id} className="flex flex-col p-6 lg:p-8 min-h-[220px] lg:min-h-[260px]">
-								<span aria-hidden className="relative block size-8">
-									<span className="absolute left-0 top-0 h-px w-full bg-accent" />
-									<span className="absolute left-0 top-0 w-px h-full bg-accent" />
-								</span>
-								<h3 className="text-2xl font-semibold tracking-[-0.02em] mt-auto">{s.title}</h3>
-								<p className="text-muted leading-relaxed mt-3 max-w-[34ch]">{s.description}</p>
-							</li>
-						))}
-					</ul>
-				</Section>
-			)}
-
-			{/* From the blog */}
-			{latest.length > 0 && (
-				<Section index={++n} total={sections} label="From the blog" action={{ href: '/blog', label: 'All posts' }}>
-					<ul className="cell-grid sm:grid-cols-2 lg:grid-cols-3">
-						{latest.map((p) => (
-							<li key={p._id} className="p-4 sm:p-6">
-								<ProjectCard
-									href={`/blog/${p.slug.current}`}
-									title={p.title}
-									meta={p.publishedAt ? formatDate(p.publishedAt) : undefined}
-									image={p.coverImage}
-									className="aspect-[3/2]"
-								/>
-							</li>
-						))}
-					</ul>
-				</Section>
-			)}
 		</main>
 	)
 }
