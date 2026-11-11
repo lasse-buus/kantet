@@ -26,6 +26,13 @@ export default defineType({
       fields: [defineField({ name: 'alt', title: 'Alt text', type: 'string' })],
     }),
     defineField({
+      name: 'coverVideo',
+      title: 'Cover Video',
+      type: 'file',
+      description: 'Optional. Replaces the cover image at the top of the case page (plays muted, on loop). The cover image is still used on cards, as the poster and for sharing.',
+      options: { accept: 'video/mp4,video/webm' },
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'array',

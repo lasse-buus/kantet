@@ -1,0 +1,19 @@
+{
+  "0": "package.json",
+  "1": "next",
+  "2": "blog/[slug]/page.tsx",
+  "3": "Kantet — Figma Handoff Spec",
+  "4": "gate/page.tsx",
+  "5": "compilerOptions",
+  "6": "sanity",
+  "7": "(main)/layout.tsx",
+  "8": "app/layout.tsx",
+  "9": "post.md",
+  "10": "scripts",
+  "11": "README.md",
+  "12": "CLAUDE.md",
+  "13": "[[...tool]]/layout.tsx",
+  "14": "AGENTS.md",
+  "15": ".mcp.json",
+  "16": "postcss.config.mjs"
+}

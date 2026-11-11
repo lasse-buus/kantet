@@ -27,26 +27,43 @@ interface Props {
   title: string
   excerpt?: string
   coverImage?: SanityImage
+  coverVideo?: { asset?: { url: string } }
   meta: DetailMeta[]
   body?: PortableTextBlock[]
   gallery?: GalleryImage[]
   more: { title: string; href: string; linkLabel: string; items: DetailMoreItem[]; variant?: 'overlay' | 'stacked' }
 }
 
-export default function DetailLayout({ back, eyebrow, title, excerpt, coverImage, meta, body, gallery, more }: Props) {
+export default function DetailLayout({ back, eyebrow, title, excerpt, coverImage, coverVideo, meta, body, gallery, more }: Props) {
   const label = back.href === '/cases' ? 'Case' : 'Article'
+  const imageUrl = coverImage?.asset?.url
+  const videoUrl = coverVideo?.asset?.url
 
   return (
     <main>
       <PageHeader label={label} meta={eyebrow} title={title} back={back} />
 
-      {coverImage?.asset?.url && (
+      {(videoUrl || imageUrl) && (
         <section className="rule">
           <div className="frame p-4 sm:p-10">
             <div className="crop">
-            <div className="relative aspect-[4/3] sm:aspect-[16/9] overflow-hidden bg-surface">
-              <Image src={coverImage.asset.url} alt={coverImage.alt ?? title} fill sizes="(max-width: 1280px) 100vw, 1280px" className="object-cover" loading="eager" fetchPriority="high" />
-            </div>
+              {videoUrl ? (
+                <video
+                  src={videoUrl}
+                  poster={imageUrl ? `${imageUrl}?w=1600&auto=format` : undefined}
+                  aria-label={coverImage?.alt ?? title}
+                  className="block w-full aspect-video bg-surface"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                />
+              ) : (
+                <div className="relative aspect-[4/3] sm:aspect-[16/9] overflow-hidden bg-surface">
+                  <Image src={imageUrl!} alt={coverImage?.alt ?? title} fill sizes="(max-width: 1280px) 100vw, 1280px" className="object-cover" loading="eager" fetchPriority="high" />
+                </div>
+              )}
             </div>
           </div>
         </section>

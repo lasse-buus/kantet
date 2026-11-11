@@ -65,6 +65,7 @@ export default async function CasePage({ params }: Props) {
       title={data.title}
       excerpt={data.excerpt}
       coverImage={data.coverImage}
+      coverVideo={data.coverVideo}
       meta={meta}
       body={data.body}
       gallery={data.gallery}
