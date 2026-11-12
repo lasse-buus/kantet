@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from '@/components/Footer'
 import Nav from '@/components/Nav'
 
@@ -10,6 +11,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       {children}
       <Footer />
       <Analytics />
+      <SpeedInsights />
     </>
   )
 }
