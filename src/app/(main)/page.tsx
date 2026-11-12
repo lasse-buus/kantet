@@ -87,7 +87,7 @@ export default async function HomePage() {
 				Independent web design &amp; development studio
 			</p>
 			<h1 className="display text-[44px] sm:text-6xl lg:text-[64px] lg:leading-[1.02] font-semibold mt-6 whitespace-pre-line">{heroTitle}</h1>
-			<p className="text-muted text-lg leading-relaxed max-w-[34rem] mt-6">{heroDescription}</p>
+			<p className="text-muted text-lg leading-relaxed max-w-136 mt-6">{heroDescription}</p>
 			<div className="flex flex-wrap items-center gap-3 mt-8">
 				<Link href="/contact" className="inline-flex items-center h-11 px-5 bg-accent text-accent-ink font-medium hover:bg-ink hover:text-paper transition-colors">
 					Start a project
@@ -115,11 +115,11 @@ export default async function HomePage() {
 					<div aria-hidden className="absolute inset-0 blueprint" />
 
 					{/* One tree: stacked on small screens, snapped to grid cells on large screens */}
-					<div className="relative px-4 sm:px-6 pt-14 pb-12 lg:p-0 lg:h-[576px]">
+					<div className="relative px-4 sm:px-6 pt-14 pb-12 lg:p-0 lg:h-144">
 						<div className={`lg:flex lg:flex-col lg:justify-center ${onGrid}`} style={cellVars(-9, 1, 9, 7)}>
 							{heroText}
 						</div>
-						<div className={`mt-12 aspect-[4/3] lg:mt-0 lg:aspect-auto ${onGrid}`} style={cellVars(1, 1, 8, 7)}>
+						<div className={`mt-12 aspect-4/3 lg:mt-0 lg:aspect-auto ${onGrid}`} style={cellVars(1, 1, 8, 7)}>
 							{heroImage}
 						</div>
 						<span aria-hidden className="hidden lg:block absolute bg-accent" style={cell(0, 6)} />
@@ -134,7 +134,7 @@ export default async function HomePage() {
 				<Section index={++n} total={sections} label="Services">
 					<ul className="cell-grid sm:grid-cols-3">
 						{services.map((s) => (
-							<li key={s._id} className="flex flex-col p-6 lg:p-8 min-h-[220px] lg:min-h-[260px]">
+							<li key={s._id} className="flex flex-col p-6 lg:p-8 min-h-55 lg:min-h-65">
 								<span aria-hidden className="relative block size-8">
 									<span className="absolute left-0 top-0 h-px w-full bg-accent" />
 									<span className="absolute left-0 top-0 w-px h-full bg-accent" />
@@ -158,7 +158,7 @@ export default async function HomePage() {
 									title={p.title}
 									meta={p.publishedAt ? formatDate(p.publishedAt) : undefined}
 									image={p.coverImage}
-									className="aspect-[3/2]"
+									className="aspect-3/2"
 								/>
 							</li>
 						))}
@@ -174,7 +174,7 @@ export default async function HomePage() {
 							<li key={c._id} className="grid lg:grid-cols-12 border-b border-line last:border-b-0">
 								<Link href={`/cases/${c.slug.current}`} className={`group lg:col-span-7 p-4 sm:p-6 lg:p-10 border-line ${i % 2 === 1 ? 'lg:order-last lg:border-l' : 'lg:border-r'}`}>
 									<div className="crop">
-										<div className="relative aspect-[16/10] overflow-hidden bg-surface">
+										<div className="relative aspect-16/10 overflow-hidden bg-surface">
 											{c.coverImage?.asset?.url && (
 												<Image
 													src={c.coverImage.asset.url}
