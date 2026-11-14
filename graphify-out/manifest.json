@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "src/app/(main)/page.tsx": {
-    "mtime": 1794492272.3673952,
-    "seen": 1794492277.824399,
-    "ast_hash": "919b4c42bfc4b54c6b1a6053c1f0f8b8",
+    "mtime": 1794657885.3618677,
+    "seen": 1794657888.261137,
+    "ast_hash": "a95687acb315b4aa1161d9c7d0701983",
     "semantic_hash": ""
   },
   "src/app/api/contact/route.ts": {
@@ -204,9 +204,9 @@
     "semantic_hash": ""
   },
   "src/sanity/queries.ts": {
-    "mtime": 1794440109.2042894,
-    "seen": 1794440332.936474,
-    "ast_hash": "6dbc7d8991a42ce402a65cb37c73a287",
+    "mtime": 1794657844.484962,
+    "seen": 1794657848.576992,
+    "ast_hash": "c78b9f127af408627c83310f5c34a127",
     "semantic_hash": ""
   },
   "src/sanity/schemas/case.ts": {
@@ -216,9 +216,9 @@
     "semantic_hash": ""
   },
   "src/sanity/schemas/homepage.ts": {
-    "mtime": 1778578896.7564812,
-    "seen": 1794440332.936476,
-    "ast_hash": "cba0b90c45246be77a3af4fbb6f64ac1",
+    "mtime": 1794657885.3645868,
+    "seen": 1794657888.2611609,
+    "ast_hash": "11826fe1cf40ad8df071f641af6e9139",
     "semantic_hash": ""
   },
   "src/sanity/schemas/index.ts": {
@@ -341,90 +341,6 @@
     "ast_hash": "8e061864f388b47f33a1c3780831193e",
     "semantic_hash": ""
   },
-  "public/puls/blog/puls-00-hero.jpg": {
-    "mtime": 1794440320.4687696,
-    "seen": 1794440332.9364932,
-    "ast_hash": "21921080af885d4939267821c66dd5d6",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/01-overview.png": {
-    "mtime": 1794439891.5359719,
-    "seen": 1794440332.936494,
-    "ast_hash": "a50c23d87bc7f5f3ff1aa5ef127141c8",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/02-sites-list.png": {
-    "mtime": 1794439891.539556,
-    "seen": 1794440332.936495,
-    "ast_hash": "541fcb9a99832608e9ae72dfc427bedb",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/03-wordpress-site.png": {
-    "mtime": 1794439891.5413015,
-    "seen": 1794440332.936496,
-    "ast_hash": "8c741f853b0799836b7554be41e13c6b",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/04-plugins.png": {
-    "mtime": 1794439891.542887,
-    "seen": 1794440332.936497,
-    "ast_hash": "1eaf6363568c0ac0c23a651759a7c8c2",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/05-backups.png": {
-    "mtime": 1794439891.5437057,
-    "seen": 1794440332.936498,
-    "ast_hash": "a80e8605912592e70db9c263210d7b36",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/06-servers.png": {
-    "mtime": 1794439891.5441973,
-    "seen": 1794440332.936498,
-    "ast_hash": "82b1cd45210740a8af6f3967167a5906",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/07-server.png": {
-    "mtime": 1794439891.5450165,
-    "seen": 1794440332.9364989,
-    "ast_hash": "a7d8270e62caae7be7f32db15bf19704",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/08-vercel.png": {
-    "mtime": 1794439891.5466619,
-    "seen": 1794440332.9365,
-    "ast_hash": "0c981933eee832e98bf389538171452a",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/09-vercel-project.png": {
-    "mtime": 1794439891.5492666,
-    "seen": 1794440332.936501,
-    "ast_hash": "46aef4e738eb3821825d7ed54517bc32",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/10-sanity.png": {
-    "mtime": 1794439891.551201,
-    "seen": 1794440332.936502,
-    "ast_hash": "d48298e522b36995b42ff348f32f42d5",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/11-local-sites.png": {
-    "mtime": 1794439891.5520697,
-    "seen": 1794440332.936503,
-    "ast_hash": "65944a6a8713413d64079528d4afc79d",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/12-alerts.png": {
-    "mtime": 1794439891.5532866,
-    "seen": 1794440332.9365041,
-    "ast_hash": "e6d4bb47b276f9505327f662db609f09",
-    "semantic_hash": ""
-  },
-  "public/puls/blog/screenshots/13-command-palette.png": {
-    "mtime": 1794439891.554323,
-    "seen": 1794440332.9365041,
-    "ast_hash": "810a1d59f701efaf0ab0c318c5580612",
-    "semantic_hash": ""
-  },
   "public/vercel.svg": {
     "mtime": 1778498022.9775836,
     "seen": 1794440332.936505,
@@ -438,9 +354,9 @@
     "semantic_hash": ""
   },
   "public/puls/blog/puls-showcase.mp4": {
-    "mtime": 1794439950.8962302,
-    "seen": 1794440332.936507,
-    "ast_hash": "ee1da13fc603056afaef197cf38e64af",
+    "mtime": 1794529238.8117447,
+    "seen": 1794657848.5770571,
+    "ast_hash": "93459444a57a7b48038233c711cabe66",
     "semantic_hash": ""
   },
   "public/then-now-studio/case/screenshots/01-library.png": {
@@ -495,6 +411,204 @@
     "mtime": 1794481954.599803,
     "seen": 1794492277.824466,
     "ast_hash": "26a8630ee598dfbb53b7298fa61240e0",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-01-disk.png": {
+    "mtime": 1794621649.8942513,
+    "seen": 1794657848.577006,
+    "ast_hash": "1ce4db9409f325b4717959c1534e1630",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-02-home.png": {
+    "mtime": 1794621649.8960178,
+    "seen": 1794657848.577007,
+    "ast_hash": "dd000366198737b895efcb715bec7b59",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-03-marked.png": {
+    "mtime": 1794621649.897123,
+    "seen": 1794657848.577008,
+    "ast_hash": "feefd04fa70a22d4433976c274dae279",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-04-list.png": {
+    "mtime": 1794621649.8986936,
+    "seen": 1794657848.577009,
+    "ast_hash": "ced093b876ee2ff14038422bc9b6dd27",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-05-search.png": {
+    "mtime": 1794621649.9001386,
+    "seen": 1794657848.57701,
+    "ast_hash": "6342473c24e950b0bac6fee41330557d",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-06-protected.png": {
+    "mtime": 1794621649.9046783,
+    "seen": 1794657848.5770109,
+    "ast_hash": "dbcaede7b752196fd8aa2f84ddada24e",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-07-review.png": {
+    "mtime": 1794621649.906149,
+    "seen": 1794657848.577012,
+    "ast_hash": "340074f1f06f97addd3883fd8c9c9ae7",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-08-confirm.png": {
+    "mtime": 1794621649.9078217,
+    "seen": 1794657848.577013,
+    "ast_hash": "b02de30b63fb1c78d70623cd2c1e6776",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-09-result.png": {
+    "mtime": 1794621649.912335,
+    "seen": 1794657848.577013,
+    "ast_hash": "5ce6e3d47a688a51e34d796fe7754475",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-10-dark.png": {
+    "mtime": 1794621649.9138644,
+    "seen": 1794657848.577014,
+    "ast_hash": "4916ede86de2b789c3602a42c60a2230",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-cover.png": {
+    "mtime": 1794621649.916066,
+    "seen": 1794657848.577015,
+    "ast_hash": "ca97557f93c2a2d764629b63eb1506c4",
+    "semantic_hash": ""
+  },
+  "public/puls/blog/check-overview-dark.png": {
+    "mtime": 1794529238.8638456,
+    "seen": 1794657848.577027,
+    "ast_hash": "2b3a7a6dd8bd39e709955b4004c084a8",
+    "semantic_hash": ""
+  },
+  "public/puls/blog/check-sheet.png": {
+    "mtime": 1794529238.8785193,
+    "seen": 1794657848.577028,
+    "ast_hash": "2f18f0cb0e593b24832eeb2debb33de7",
+    "semantic_hash": ""
+  },
+  "public/puls/blog/check-video-12s.png": {
+    "mtime": 1794529238.8914404,
+    "seen": 1794657848.5770292,
+    "ast_hash": "88a705e62e412dc012de02e2fef16b0c",
+    "semantic_hash": ""
+  },
+  "public/puls/hero.png": {
+    "mtime": 1794529603.4314277,
+    "seen": 1794657848.5770292,
+    "ast_hash": "76e0849cc215c4c389511e0a4fa8d624",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/01-overview.png": {
+    "mtime": 1794529603.4467607,
+    "seen": 1794657848.57703,
+    "ast_hash": "16f4a8346979f74ebba082a72ea2cb37",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/02-sites-list.png": {
+    "mtime": 1794529603.4479835,
+    "seen": 1794657848.577031,
+    "ast_hash": "94595d7dd3a6924d8e7fbe8b6da78c1f",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/03-wordpress-site.png": {
+    "mtime": 1794529603.4492564,
+    "seen": 1794657848.577033,
+    "ast_hash": "208c296f523c64f7828305802ee38d1c",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/04-plugins.png": {
+    "mtime": 1794529603.4499936,
+    "seen": 1794657848.577034,
+    "ast_hash": "4e0966b1ba393030bdfbe970e7906c0f",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/05-backups.png": {
+    "mtime": 1794529603.4507594,
+    "seen": 1794657848.577034,
+    "ast_hash": "2d50c12953b329f5aa7fa7d8c8d9fb4a",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/06-servers.png": {
+    "mtime": 1794529603.4515173,
+    "seen": 1794657848.577035,
+    "ast_hash": "748825606029bde3767c895eff457d84",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/07-server.png": {
+    "mtime": 1794529603.452381,
+    "seen": 1794657848.5770361,
+    "ast_hash": "fd9588e592e5b4c35d8d1592304256b9",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/08-vercel.png": {
+    "mtime": 1794529603.453222,
+    "seen": 1794657848.577037,
+    "ast_hash": "1cea43ec05e7900e116c63b49d7d45a4",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/09-vercel-project.png": {
+    "mtime": 1794529603.4544775,
+    "seen": 1794657848.577038,
+    "ast_hash": "0ddb8b34e3dcf31c9916ad5e5b76d529",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/10-sanity.png": {
+    "mtime": 1794529603.4559379,
+    "seen": 1794657848.577039,
+    "ast_hash": "1447a85859155b208de7c06e1d3d71c9",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/11-local-sites.png": {
+    "mtime": 1794529603.4572947,
+    "seen": 1794657848.57704,
+    "ast_hash": "258fa5e30458c0dea1b0845047b823a6",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/12-alerts.png": {
+    "mtime": 1794529603.4584405,
+    "seen": 1794657848.57704,
+    "ast_hash": "a4143286f5e242a1d57cbcb769aa2cb2",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/13-command-palette.png": {
+    "mtime": 1794529603.4595263,
+    "seen": 1794657848.577041,
+    "ast_hash": "84256c86837e21d691dd0313bf374480",
+    "semantic_hash": ""
+  },
+  "public/puls/screenshots/14-backups.png": {
+    "mtime": 1794529603.461017,
+    "seen": 1794657848.5770419,
+    "ast_hash": "14a792a8dd2d0bfd659003eb66b4af50",
+    "semantic_hash": ""
+  },
+  "src/app/apple-icon.png": {
+    "mtime": 1794503375.273502,
+    "seen": 1794657848.577054,
+    "ast_hash": "ef47915e0174a372bb64e2e67f2058fa",
+    "semantic_hash": ""
+  },
+  "src/app/icon.svg": {
+    "mtime": 1794503373.5314317,
+    "seen": 1794657848.577055,
+    "ast_hash": "ecc979b0053cf36287c04673efc10397",
+    "semantic_hash": ""
+  },
+  "public/broomstick/broomstick-showcase.mp4": {
+    "mtime": 1794621649.9181416,
+    "seen": 1794657848.577056,
+    "ast_hash": "e2f8fc0fcccec36ed4a6f773c11be1ab",
+    "semantic_hash": ""
+  },
+  "public/puls/puls-showcase.mp4": {
+    "mtime": 1794529603.4072742,
+    "seen": 1794657848.577058,
+    "ast_hash": "93459444a57a7b48038233c711cabe66",
     "semantic_hash": ""
   },
   "package-lock.json": {

@@ -1,7 +1,7 @@
-# Graph Report - kantet  (2026-11-12)
+# Graph Report - kantet  (2026-11-14)
 
 ## Corpus Check
-- 46 files · ~13,936 words
+- 46 files · ~14,061 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 4 file(s) not represented in the graph (top: (none) 1, .bak 1, .ico 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `75c09fca`
+- Built from commit: `f65711e8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

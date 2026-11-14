@@ -16,6 +16,7 @@ interface Homepage {
 	heroImage?: { asset?: { url: string }; alt?: string }
 	heroTitle?: string
 	heroDescription?: string
+	featuredCases?: (CaseItem | null)[]
 }
 
 interface CaseItem {
@@ -74,7 +75,9 @@ export default async function HomePage() {
 	const heroAlt = homepage?.heroImage?.alt ?? ''
 	const heroTitle = homepage?.heroTitle ?? 'Design & development\nthat moves people.'
 	const heroDescription = (homepage?.heroDescription ?? 'Kantet is an independent agency building web experiences that combine sharp design with solid engineering.').trim()
-	const featured = cases.slice(0, 2)
+	// Hand-picked in the Homepage document; falls back to the three newest cases.
+	const picked = (homepage?.featuredCases ?? []).filter((c): c is CaseItem => Boolean(c?.slug?.current))
+	const featured = picked.length > 0 ? picked : cases.slice(0, 3)
 	const latest = posts.slice(0, 3)
 
 	const sections = [featured.length > 0, services.length > 0, latest.length > 0].filter(Boolean).length

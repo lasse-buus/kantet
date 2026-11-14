@@ -5,6 +5,10 @@ export const homepageQuery = groq`
     heroImage { asset->{ url }, alt },
     heroTitle,
     heroDescription,
+    featuredCases[]->{
+      _id, title, slug, client, year, tags, excerpt,
+      coverImage { asset->{ url }, alt },
+    },
   }
 `
 
